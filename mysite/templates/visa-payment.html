@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Payment</title>
+    <link rel="stylesheet" href="visa-payment.css">
+    <script src="addtocart.js"></script>
+</head>
+<body>
+    <div class="payment-container">
+        <h1>visa payment</h1>
+        <div>
+            <div class="payment-form">
+                <label for="card-number">Card Number:</label>
+                <input type="text" id="card-number" name="card-number" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+                </div>
+                <div class="payment-form">
+                    <label for="card holder">card holder:</label>
+                    <input type="text" id="card-holder" name="card-holder" placeholder="ahmed khalid" required>
+                </div>
+                <div class="payment-form">
+                    <label for="expiration-date">Expiration Date:</label>
+                    <input type="date" id="expiration-date" name="expiration-date" placeholder="mm/yy" max="12-31-2070" min="01-01-2023" required>
+                </div>
+                <div class="payment-form">
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="xxx" required>
+                </div>
+                <button class="btn" onclick="payWithVisa()">Pay</button>
+        
+        </div>
+</body>
+</html>

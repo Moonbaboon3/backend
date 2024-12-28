@@ -1,0 +1,178 @@
+*{
+    box-sizing: border-box;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: violet;
+}
+
+.Orders-tab {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+}
+
+.Orders-tab h2 {
+    margin-top: 20px;
+}
+.Orders-tab .current-orders-list {
+    background-color: rgb(255, 255, 255);
+    width: 65%;
+    align-items: center;
+    margin-left: 100px;
+    margin-right: 100px;
+    height: auto;
+}
+
+
+.Orders-tab .page-headline {
+    
+    height: 100px;
+    display: flex;
+    color: #5f5d5d;
+}
+
+
+.Orders-tab .page-headline h2 {
+    margin-left: 20px;
+}
+
+.Orders-tab .page-headline p {
+margin-top:25px;
+margin-left: 60px;
+}
+
+.Orders-tab .current-orders-list .current-order {
+    width: 700px;
+    margin-bottom: 20px;
+    margin-top: auto;
+    margin-left: 20px;
+
+}
+
+.current-order-header {
+    width:900px;
+    height: auto;
+    display: flex;
+    box-shadow:0px 2px 0px 0px #a4a3a3;
+}
+
+.current-order-header .order-id {
+    width: fit-content;
+    height: 23px;
+    border-style: solid;
+    border-radius:30px ;
+    border-color: #d1c;
+    background-color:rgb(214, 85, 214);
+    color: white ;
+
+    
+
+}
+
+.current-order-header .order-date {
+    margin-left: 20px;
+    margin-top: 5px;
+    color: #a4a3a3;
+}
+.current-order-header .order-tracker {
+    height: 30px;
+    margin-left: auto;
+    background-color: gold;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
+.current-order-header .order-tracker:hover
+{
+    background-color: rgb(26, 255, 0);
+}
+
+.current-order .order-product {
+    display: flex;
+    height: 165px;
+    margin-top: 10px;
+    width: 900px;
+    box-shadow:0px 2px 0px 0px #c0bebe;
+}
+
+.current-order .order-img img{
+    height: 150px;
+}
+
+.order-product .order-info {
+margin-top: 10px;
+margin-left: auto;
+}
+
+.order-product .order-info .Pname {
+    text-overflow: ellipsis;
+    width: 120px;
+    
+}
+
+.order-product .order-info .quantity-price {
+    display: flex;
+    width : auto;
+    margin-top: 80px;
+   
+
+}
+
+
+
+.order-product .order-info .quantity-price h4 {
+    color:#a4a3a3;
+}
+
+.order-product .order-info .quantity-price h3 {
+    margin-left: 60px;
+    color: #3498db;
+}
+
+.current-order .order-status {
+    margin-top: 50px;
+    margin-left: 110px;
+    color: #a4a3a3;
+}
+
+.current-order .order-status h3 {
+    margin-top: 9px;
+    color:orange
+}
+
+.current-order .delivery {
+    margin-top: 50px;
+    margin-left: 140px;
+    color: #a4a3a3;
+}
+
+.current-order .delivery h3 {
+    color: black;
+}
+
+.current-order .order-bottom {
+    width:900px;
+    height: auto;
+    display: flex;
+    margin-top: 10px;
+}
+
+.current-order .order-bottom .Total-cost {
+    margin-left: auto;
+    color: #a4a3a3;
+}
+
+.current-order .order-bottom .cancel-order {
+    background-color: red;
+}
+
+.current-order .order-bottom .cancel-order:hover {
+    background-color: rgb(192, 25, 25);
+}

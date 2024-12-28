@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="stylesl.css">
+</head>
+
+<body>
+    <div class="login">
+        <img src="./profile_pic.png" alt="">
+        <h1>Login</h1>
+        <form onsubmit="return submitForm(event)">
+            <label>Email</label>
+            <input id="email" type="email" maxlength="25" placeholder="Enter Your Email" required>
+            <label>Password</label>
+            <input id="password" type="password" maxlength="15" placeholder="Enter Your Password" required>
+            <input type="submit" value="Login" >
+            <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+    </div>
+    <script src="scriptlo.js"></script>
+</body>
+
+</html>

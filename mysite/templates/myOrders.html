@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./productCard.css">
+    <link rel="stylesheet" href="myOrders.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+  <body>
+      <div class="container">
+          <div class="navbar">
+              <div class="ctgry">
+                <button class="dropbtn">
+                  <i class="fa fa-bars" ></i>
+                </button>
+                <div class="dropdown-content">
+                 
+                    <li class="dropdown-submenu">
+                        <a class="test" href="#">Phones and Tablets</a>
+                    </li>
+                  <a href="#HA">Household appliances</a>
+                  <a href="products.html">Gaming</a>
+                  <a href="#PC">PCs </a>
+                  <a href="#M&S">Headpones  </a>
+                </div>
+              </div>
+              <a href="HomePage.html">Home</a>
+              <a href="addtocart.html" class="fa fa-shopping-cart">Cart</a> 
+              <a href="myOrders.html" class="fa fa-file-text-o">My orders</a>
+              <a href="#account">Account</a> 
+              <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+            </div>
+        </div>
+
+        <div class="Orders-tab">
+            
+            <div class="current-orders-list">
+                <div class="page-headline">
+                    <h2>My Orders</h2>
+                    <p>View and edit your orders here</p>
+                </div>
+                <div class="current-order">
+                    <div class="current-order-header">
+                        <h4 class="order-id">#0000001</h4>
+                        <h5 class="order-date">Order placed: 12/11/2024</h5>
+                        <button class="order-tracker"><i class="fa fa-map-marker">Track order</i></button>
+
+                    </div>
+            <div class="order-product">
+                <div class="order-img">
+                    <img src="Images/ps5PE.jpeg" alt="Ps5 physical edition">
+                </div>
+                <div class="order-info">
+                    <h3 class="Pname">PS5 Physical Edition</h3>
+                    <div class="quantity-price">
+                    <h4 >Qty: </h4>
+                    <h4 id="q1">1</h4>
+                    <h3 id="price1">499$</h3>
+                    </div>
+                </div>
+
+                <div class="order-status">
+                    Status
+                    <h3>In - Transit</h3>
+                </div>
+
+                <div class="delivery">
+                    Delivery Expected by:
+                    <h3>20 December 2024</h3>
+                </div>
+            </div>
+<!-----------------next product in order---------------------->
+            <div class="order-product">
+                <div class="order-img">
+                    <img src="Images/nintendo.jpg" alt="nintendo Switch">
+                </div>
+                <div class="order-info">
+                    <h3 class="Pname">Nintendo Switch</h3>
+                    <div class="quantity-price">
+                    <h4>Qty: </h4>
+                    <h4 id="q2">1</h4>
+                    <h3 id="price2">249$</h3>
+                    </div>
+                </div>
+
+                <div class="order-status">
+                    Status
+                    <h3>In - Transit</h3>
+                </div>
+
+                <div class="delivery">
+                    Delivery Expected by:
+                    <h3>20 December 2024</h3>
+                </div>
+            </div>
+                    
+                    
+            <div class="order-bottom">
+                <button class="cancel-order"><i class="fa fa-times">CANCEL ORDER</i></button>
+                
+                <h3 class="Total-cost" id="Tot-Cost"></h5>
+            </div>
+                    
+                </div>
+                
+               
+            </div>
+        </div>  
+        
+
+<script src="myOrders.js"></script>
+<script src="multidropdown.js"></script>
+
+
+     
+  </body>
+</html>

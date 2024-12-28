@@ -1,0 +1,218 @@
+*{
+    box-sizing: border-box;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+}
+
+.Prod-container{
+    background-color: violet;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.box{
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgb(0, 0, 0,12%);
+    padding: 45px;
+    margin: 15px 0;
+    width: 950px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: auto ;
+    grid-template-areas: 
+    "images info"
+    ;
+    grid-gap: 35px;
+    }
+
+    .images {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+  }
+
+  
+  .card-wrapper{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.img-display{
+    overflow: hidden;
+}
+.img-showcase{
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+}
+.img-showcase img{
+    min-width: 100%;
+}
+.img-select{
+    display: flex;
+}
+.img-item{
+    margin: 0.3rem;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3){
+    margin-right: 0;
+}
+.img-item:hover{
+    opacity: 0.8;
+}
+
+
+
+
+
+
+
+
+    .box .basic-info{
+        grid-area: info;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+  
+    .box .basic-info div>i {
+        color: gold;
+        padding: 2px;
+    }
+
+    .box .basic-info div h5 {
+        color: gray;
+        padding: 1px;
+    }
+
+
+.box .basic-info .span {
+    font-weight: 800;
+    font-size: 25px;
+}
+
+.box .basic-info .options a {
+color:white;
+background-color:  #3498db;
+display: inline-block;
+padding: 10px 15px;
+text-decoration: none;
+font-weight: 600;
+font-size: 12px;
+border-radius: 5px;
+}
+
+.box .basic-info .options a:hover {
+    background-color:  #2980b9;
+}
+
+
+
+ .box .description {
+        grid-area: discription;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+.box .description p {
+    color:gray;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+
+.box .description .specification  {
+    color: gray;
+    text-align: center ;
+    border: 0.5;
+    
+}
+
+.box .description .specification  tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Shading every odd row */
+  }
+
+.box .Review-tab {
+grid-column:1/3;
+
+
+
+}
+.box .Review-tab .review-list {
+overflow-y: auto;
+max-height: 300px;
+width: auto;
+margin-bottom: 20px;
+
+
+}
+  .review-list .review {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    
+  }
+
+  .Review-tab h3{
+    margin-bottom: 20px;
+  }
+  
+  .review-list .review .reviewer-info {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  .review-list .review .reviewer-info strong {
+    color:#3498db;
+  }
+  
+  .review-list .review .review-date {
+    font-size: 0.9rem;
+    color: #888;
+  }
+  
+  .review-list .review .rating {
+    color: gold;
+  }
+  
+ .review-list .review-comment {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .button{
+    cursor: pointer;
+    outline: 0;
+    color: #AAA;
+  
+  }
+  
+  .btn:focus {
+    outline: none;
+  }
+  
+  .green{
+    color: green;
+  }
+  
+  .red{
+    color: red;
+  }
+

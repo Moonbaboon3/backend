@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="addtocart.css">
+    <script src="addtocart.js"></script>
+    <title>add to cart</title>
+</head>
+<body class="body">
+    <div class="container">
+        <div class="navbar">
+          
+            
+            <div class="ctgry">
+              <button class="dropbtn">
+                <i class="fa fa-bars" ></i>
+              </button>
+              <div class="dropdown-content">
+                <a href="#M&T">Phones and Tablets</a>
+                <a href="#HA">Household appliances</a>
+                <a href="products.html">Gaming</a>
+                <a href="#PC">PCs </a>
+                <a href="#M&S">Headpones and Speakers </a>
+              </div>
+            </div>
+            <a href="HomePage.html">Home</a>
+            <a href="addtocart.html" class="fa fa-shopping-cart">Cart</a> 
+            <a href="myOrders.html" class="fa fa-file-text-o">My orders</a>
+            <a href="#account">Account</a> 
+            <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+          </div>
+    </div>
+    <h1 class="title" >Add to cart</h1>
+    <section  class ="container">
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Remove</td> 
+                    <td>Image</td>
+                    <td>Product</td>
+                    <td>Price</td>
+                    <td>Quantity</td>
+                    <td>Total</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#" onclick="deleteItem(this)"><i class="fa fa-trash-o" style="font-size:24px"></i></a></td>
+                
+                    <td><img class="img" src="images/image.webp" alt=""></td>
+                    <td><h5>airpods</h5></td>
+                    <td id="price">$20.00</td>
+                    <td><input class="quantity" type="number" value="1" min="1" onclick="price()"></td>
+                    <td class="total">$20.00</td>
+                </tr>
+                <tr>
+                    <td><a href="#" onclick="deleteItem(this)"><i class="fa fa-trash-o" style="font-size:24px"></i></a></td>
+
+                    <td><img class="img" src="images/iphone-15.jpg-blue.jpg" alt=""></td>
+                    <td><h5>iphone 15</h5></td>
+                    <td id="price">$750.00</td>
+                    <td><input class="quantity" type="number" value="1" min="1" onclick="price()"></td>
+                    <td class ="total">$750.00</td>
+                </tr>
+                <td><a href="#" onclick="deleteItem(this)"><i class="fa fa-trash-o" style="font-size:24px"></i></a></td>
+                    <td><img class="img" src="images/sony-ps5.png" alt=""></td>
+                    <td><h5>playstation 5</h5></td>
+                    <td id="price">$520.00</td>
+                    <td><input class="quantity" type="number" value="1" min="1" onclick="price()"></td>
+                    <td class="total">$520.00</td>
+            </tbody>
+        </table>
+    </section>
+
+    <section class ="container1">
+        <div class="total-price">
+            <table>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>$1290.00</td>
+                </tr>
+                <tr>
+                    <td>Tax</td>
+                    <td>$200.00</td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td>$1490.00</td>
+                </tr>
+            </table>
+        </div>
+        <section class="payment-method">
+            <h2>Select Payment Method</h2>
+            <form id="paymentForm">
+                <label>
+                    <input type="radio" name="payment" value="Cash" required>
+                    Cash
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="payment" value="Visa" required>
+                    Visa
+                </label>
+                <br>
+                <button type="button" class="btn" onclick="checkout()">Proceed to Payment</button>
+            </form>
+        </section>
+        
+    </section>
+    
+</body>
+</html>

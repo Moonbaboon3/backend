@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Page</title>
+    <link rel="stylesheet" href="accountcss.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Account Information</h1>
+        </header>
+
+        <section class="profile-info">
+            <div class="profile-box">
+                <h2>Your Account Information</h2>
+                <div class="profile-details">
+                    <label for="nameDisplay">Name:</label>
+                    <span id="nameDisplay">Loading...</span>
+                    <br>
+
+                    <label for="emailDisplay">Email:</label>
+                    <span id="emailDisplay">Loading...</span>
+                    <br>
+
+                    <label for="birthdayDisplay">Birthday:</label>
+                    <span id="birthdayDisplay">Loading...</span>
+                    <br>
+
+                    <label for="addressDisplay">Address:</label>
+                    <span id="addressDisplay">Loading...</span>
+                    <br>
+
+                    <label for="phoneDisplay">Phone Number:</label>
+                    <span id="phoneDisplay">Loading...</span>
+                    <br>
+
+                    <button id="loadProfileBtn">Load Profile</button>
+                    <input type="file" id="fileInput" />
+                    <button id="editProfileBtn" style="display:none;">Edit Profile</button>
+                    <button id="saveProfileBtn" style="display:none;">Save Profile</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="account.js"></script>
+</body>
+
+</html>
