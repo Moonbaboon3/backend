@@ -32,67 +32,16 @@
         <a href="{% url 'account' %}" >Account</a>
         <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
       </div>
+
+    <h2>{{ctgry|capfirst}} Products</h2>
     <div class="row">
-      <div class="card">
-          <img src="{% static 'Images/digivice.png'%}" alt="Digivice">
-          <h1>Digivice</h1>
-          <p class="price">$20</p>
-          <p>Some text about digivice</p>
-          <div class="rating">
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-          </div>
-          <p><button onclick="navigateWithData('{% static 'Images/digivice.png'%}','Playstation 5',20,1)">Add to Cart</button></p>
-      </div>
-  
-      <div class="card">
-          <img src="{% static 'Images/ps5PE.jpeg'%}" alt="Playstation 5">
-          
-          <a href="{% url 'products' %}"><h1>Playstation 5 Physical Edition</h1></a>
-          <p class="price">$499.99</p>
-          <p>Some text about PS5</p>
-          <div class="rating">
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-          </div>
-          <p><button onclick="navigateWithData('{% static 'Images/ps5PE.jpeg'%}','Playstation 5',499.99,1)">Add to Cart</button></p>
-      </div>
-  
-      <div class="card">
-          <img src="{% static 'Images/nintendo.jpg'%}" alt="Nintendo Switch">
-          <h1>Nintendo Switch</h1>
-          <p class="price">$249.99</p>
-          <p>Some text about Nintendo Switch</p>
-          <div class="rating">
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-              <span class="fa fa-star"></span>
-          </div>
-          <p><button onclick="navigateWithData('{% static 'Images/nintendo.jpg'%}','Nintendo Switch',249.99,1)">Add to Cart</button></p>
-      </div>
-      <div class="card">
-        <img src="{% static 'Images/ps4.png'%}" alt="Playstation 4">
-        <h1>Playstation 4</h1>
-        <p class="price">$249.99</p>
-        <p>Some text about Ps4</p>
-        <div class="rating">
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-            <span class="fa fa-star"></span>
-        </div>
-        <p><button onclick="navigateWithData('{% static 'Images/ps4.png'%}','Playstation 4',249.99,1)">Add to Cart</button></p>
-    </div>
+     {% for product in products %}
+          {% include 'productCard.html' with product=product %}
+     {% endfor %}
+
+     </div>
   </div>
+   
   
 
 </body>
