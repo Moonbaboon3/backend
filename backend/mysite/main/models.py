@@ -6,8 +6,11 @@ import datetime
 class Category(models.Model):
     ctgry_name = models.CharField(max_length=50)
 
-    def _str_(self):
+    def __str__(self):
         return self.ctgry_name
+    
+    class Meta:
+        verbose_name_plural = 'categories'
 
 #customers
 class Customer(models.Model):
@@ -17,7 +20,7 @@ class Customer(models.Model):
     email = models.EmailField(max_length=100)
     password = models.CharField(max_length=100)
 
-    def _str_(self):
+    def __str__(self):
         return f'{self.fName} {self.lName}'
 
 class Product(models.Model):
@@ -29,7 +32,7 @@ class Product(models.Model):
     is_sale = models.BooleanField(default=False)
     sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
 
-    def _str_(self):
+    def __str__(self):
         return self.pName
 
 # customer orders
@@ -42,7 +45,7 @@ class Order(models.Model):
     data = models.DateField(default=datetime.datetime.today)
     status = models.BooleanField(default=False)
 
-    def _Str_(self):
+    def __str__(self):
         return self.product
 
 
