@@ -14,30 +14,27 @@
 <body>
     <div class="container">
       <div class="navbar">
-        
-          
-          <div class="ctgry">
-            <button class="dropbtn">
-              <i class="fa fa-bars" ></i>
-            </button>
-            <div class="dropdown-content">
-              <a href="#M&T">Phones and Tablets</a>
-              <a href="#HA">Household appliances</a>
-              <a href="products.html">Gaming</a>
-              <a href="#PC">PCs </a>
-              <a href="#M&S">Headpones and Speakers </a>
-            </div>
+        <div class="ctgry">
+          <button class="dropbtn">
+            <i class="fa fa-bars"></i>
+          </button>
+          <div class="dropdown-content">
+            <a href="#M&T">Phones and Tablets</a>
+            <a href="#HA">Household appliances</a>
+            <a href="{% url 'products' %}">Gaming</a>
+            <a href="#PC">PCs </a>
+            <a href="#M&S">Headpones and Speakers </a>
           </div>
-          <a href="HomePage.html">Home</a>
-          <a href="addtocart.html" class="fa fa-shopping-cart">Cart</a> 
-          <a href="myOrders.html" class="fa fa-file-text-o">My orders</a>
-          <a href="#account">Account</a> 
-          <input type="text" placeholder="Search for product..."  style="align-self: flex-end;">
         </div>
-    </div>
+        <a href="{% url 'home' %}">Milky Way</a>
+        <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
+        <a href="{% url 'myorders' %}" class="fa fa-file-text-o">My orders</a>
+        <a href="{% url 'account' %}" >Account</a>
+        <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+      </div>
     <div class="row">
       <div class="card">
-          <img src="Images/digivice.png" alt="Digivice">
+          <img src="{% static 'Images/digivice.png'%}" alt="Digivice">
           <h1>Digivice</h1>
           <p class="price">$20</p>
           <p>Some text about digivice</p>
@@ -48,13 +45,13 @@
               <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
           </div>
-          <p><button onclick="navigateWithData('Images/digivice.png','Playstation 5',20,1)">Add to Cart</button></p>
+          <p><button onclick="navigateWithData('{% static 'Images/digivice.png'%}','Playstation 5',20,1)">Add to Cart</button></p>
       </div>
   
       <div class="card">
-          <img src="Images/ps5PE.jpeg" alt="Playstation 5">
+          <img src="{% static 'Images/ps5PE.jpeg'%}" alt="Playstation 5">
           
-          <a href="productDetailTab.html"><h1>Playstation 5 Physical Edition</h1></a>
+          <a href="{% url 'products' %}"><h1>Playstation 5 Physical Edition</h1></a>
           <p class="price">$499.99</p>
           <p>Some text about PS5</p>
           <div class="rating">
@@ -64,11 +61,11 @@
               <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
           </div>
-          <p><button onclick="navigateWithData('Images/ps5PE.jpeg','Playstation 5',499.99,1)">Add to Cart</button></p>
+          <p><button onclick="navigateWithData('{% static 'Images/ps5PE.jpeg'%}','Playstation 5',499.99,1)">Add to Cart</button></p>
       </div>
   
       <div class="card">
-          <img src="Images/nintendo.jpg" alt="Nintendo Switch">
+          <img src="{% static 'Images/nintendo.jpg'%}" alt="Nintendo Switch">
           <h1>Nintendo Switch</h1>
           <p class="price">$249.99</p>
           <p>Some text about Nintendo Switch</p>
@@ -79,10 +76,10 @@
               <span class="fa fa-star"></span>
               <span class="fa fa-star"></span>
           </div>
-          <p><button onclick="navigateWithData('Images/nintendo.jpg','Nintendo Switch',249.99,1)">Add to Cart</button></p>
+          <p><button onclick="navigateWithData('{% static 'Images/nintendo.jpg'%}','Nintendo Switch',249.99,1)">Add to Cart</button></p>
       </div>
       <div class="card">
-        <img src="Images/ps4.png" alt="Playstation 4">
+        <img src="{% static 'Images/ps4.png'%}" alt="Playstation 4">
         <h1>Playstation 4</h1>
         <p class="price">$249.99</p>
         <p>Some text about Ps4</p>
@@ -93,7 +90,7 @@
             <span class="fa fa-star"></span>
             <span class="fa fa-star"></span>
         </div>
-        <p><button onclick="navigateWithData('Images/ps4.png','Playstation 4',249.99,1)">Add to Cart</button></p>
+        <p><button onclick="navigateWithData('{% static 'Images/ps4.png'%}','Playstation 4',249.99,1)">Add to Cart</button></p>
     </div>
   </div>
   

@@ -186,7 +186,7 @@ function navigateWithData(image,name,price,quantity) {
         quantity: quantity
     };
     const queryString = new URLSearchParams(data).toString();
-    window.location.href = `./addtocart.html?${queryString}`;
+    window.location.href = `cart/?${queryString}`;
 }
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
