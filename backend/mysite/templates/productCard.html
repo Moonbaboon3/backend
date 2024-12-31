@@ -16,7 +16,7 @@
           {{product.price}}$
           {% endif %}   
           </p>
-          <p><a class="view-btn" href=""></a>View details</p>
+          <p><a class="view-btn" href="{% url 'product_detail' category.id product.id %}">View details</a></p>
           <div class="rating">
           </div>
           <p><button onclick="navigateWithData('Images/digivice.png','Playstation 5',20,1)">Add to Cart</button></p>

@@ -34,6 +34,27 @@ class Product(models.Model):
 
     def __str__(self):
         return self.pName
+    
+class Product_details(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name='details')
+    description = models.TextField()
+    specifications = models.JSONField(default=dict)
+    image1 = models.ImageField('uploads/product_details/')
+    image2 = models.ImageField('uploads/product_details/')
+    image3 = models.ImageField('uploads/product_details/')
+
+    def __str__(self):
+        return f'Details of {self.product.pName}'
+
+class Review(models.Model):
+    productDetail = models.ForeignKey(Product_details, on_delete=models.CASCADE, related_name='reviews')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name='reviews')
+    rating = models.PositiveSmallIntegerField()
+    comment = models.TextField()
+    creation_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer.fName 
 
 # customer orders
 class Order(models.Model):

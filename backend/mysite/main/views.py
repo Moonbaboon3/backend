@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render
-from .models import Product, Category
+from .models import Product, Category, Product_details
 
 # Create your views here.
 
@@ -23,8 +23,18 @@ def account_view(request):
 def myorders_view(request):
     return render(request, 'myorders.html')
 
-def productdetail_view(request):
-    return render(request, 'productdetail.html')
+def productDetail_view(request,category_id, product_id):
+    category = get_object_or_404(Category, id=category_id)
+    product = get_object_or_404(Product,id=product_id, ctgry=category)
+    product_details = get_object_or_404(Product_details,product=product) 
+    return render(request, 'productDetail.html',{
+            'category': category,
+            'product' : product,
+            'product_details' :product_details,
+                
+               
+                })
+
 
 def signup_view(request):
     return render(request, 'signup.html')

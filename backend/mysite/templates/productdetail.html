@@ -1,64 +1,45 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/productDetailTab.css' %}">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-<title>Products</title>
-</head>
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div class="ctgry">
-        <button class="dropbtn">
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#M&T">Phones and Tablets</a>
-          <a href="#HA">Household appliances</a>
-          <a href="{% url 'products' %}">Gaming</a>
-          <a href="#PC">PCs </a>
-          <a href="#M&S">Headpones and Speakers </a>
-        </div>
-      </div>
-      <a href="{% url 'home' %}">Milky Way</a>
-      <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
-      <a href="{% url 'myorders' %}" class="fa fa-file-text-o">My orders</a>
-      <a href="{% url 'account' %}" >Account</a>
-      <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
-    </div>
-    
-    
+{% block title %}{{ product.pName }} {% endblock%}
+
+{% block head_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/productCard.css' %}">
+   <link rel="stylesheet" href="{% static 'css/productDetailTab.css'%}">
+{% endblock %}
+ 
+{% block head_js%}
+  <script src="{% static 'js/addtocart.js' %}"></script>
+{% endblock%}
+
+
+{% block content %}
 <div class="Prod-container">
    <div class="box">
         <!-- card left -->
         <div class = "product-imgs">
           <div class = "img-display">
             <div class = "img-showcase">
-              <img src = "{% static 'Images/PS5Box.webp'%}" alt = "shoe image">
-              <img src = "{% static 'Images/PS5Y.webp'%}"  alt = "shoe image">
-              <img src = "{% static 'Images/PS5.webp'%}"  alt = "shoe image">
+              <img src = "{{ product_details.image1.url }}" alt = "image 1">
+              <img src = "{{ product_details.image2.url }}" alt = "image 2">
+              <img src = "{{ product_details.image3.url }}" alt = "image 3">
             </div>
           </div>
           <div class = "img-select">
             <div class = "img-item">
               <a href = "#" data-id = "1">
-                <img src = "{% static 'Images/PS5Box.webp'%}" alt = "shoe image">
+                <img src = "{{ product_details.image1.url }}" alt = "image 1">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "2">
-                <img src = "{% static 'Images/PS5Y.webp'%}"  alt = "shoe image">
+                <img src = "{{ product_details.image2.url }}"  alt = "image 2">
               </a>
             </div>
             <div class = "img-item">
               <a href = "#" data-id = "3">
-                <img src = "{% static 'Images/PS5.webp'%}"  alt = "shoe image">
+                <img src = "{{ product_details.image3.url }}"  alt = "image 3">
               </a>
             </div>
   
@@ -66,7 +47,7 @@
     </div>
 
     <div class="basic-info">
-        <h1>Playstation 5 slim physical edition</h1>
+        <h1>{{ product.pName }}</h1>
         <div class="rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -75,8 +56,13 @@
             <i class="fa fa-star"></i>
             <h5>(99+ reviews)</h5>
         </div>
-        
-        <span>$499</span>
+        {% if product.is_sale %}
+
+           <span><strike class="old-price" style="color:#888;">{{product.price}}$</strike>&nbsp;<span style="color:#f39c12;">{{product.sale_price}}$</span></span>                 
+          
+          {% else %}
+          <span style="color:#f39c12;">{{product.price}}$</span>
+          {% endif %} 
         <div class="options">
             <a href="#">Buy it now</a>
             <a href="#">Add to cart</a>
@@ -84,32 +70,17 @@
         </div>
 
         <div class="description">
-          <p> Play Has No Limits for new game possibilities with unleash PS5 that exceeds the limits of play.
-              Super fast SSD dramatically improves read speed Haptic technology, adaptive trigger,
-              and 3D audio technology deliver a dense immersive feel. 
-              And experience the new generation of amazing PlayStation titles</p>
+          <p>{{ product_details.description }}</p>
           <h3>Specifications:</h3>
               <table class="specification">
-             <tr>
-              <td>Accessories Included</td>
-              <td >PlayStation 5 DualSense Controller - White</td>
-             </tr>
-             <tr>
-              <td>Data Storage</td>
-              <td>1 TB</td>
-             </tr>
-             <tr>
-              <td>Color</td>
-              <td>White</td>
-             </tr>
-             <tr>
-              <td>Frame Rate</td>
-              <td>120 fps</td>
-             </tr>
-             <tr>
-              <td>Maximum Video Resolution</td>
-              <td>4k</td>
-             </tr>
+             
+              {% for key, value in product_details.specifications.items %}
+              <tr>
+              <td>{{ key }}</td>
+              <td >{{ value }}</td>
+              </tr>
+              {% endfor%}
+             
               </table>
               
   
@@ -140,7 +111,7 @@
             <button class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
             <button class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
           </div>
-</div>
+        </div>
 
 
 <!--------------next review------------------>
@@ -166,19 +137,8 @@
        
    </div>
 </div>
-
-
-</div>
-</div>
-</div>
+ <script src="{% static 'js/productDetailTab.js' %}"></script>
+{% endblock%}
 
 
 
-
-
-
-
-<script src="{% static 'js/submenu.js'}"></script>
-<script src="{% static 'js/productDetailTab.js'%}"></script>
-</body>
-</html>
