@@ -12,25 +12,23 @@
 </head>
 <body class="body">
     <div class="container">
-        <div class="navbar">
-            <div class="ctgry">
-              <button class="dropbtn">
-                <i class="fa fa-bars"></i>
-              </button>
-              <div class="dropdown-content">
-                <a href="#M&T">Phones and Tablets</a>
-                <a href="#HA">Household appliances</a>
-                <a href="{% url 'products' %}">Gaming</a>
-                <a href="#PC">PCs </a>
-                <a href="#M&S">Headpones and Speakers </a>
-              </div>
-            </div>
-            <a href="{% url 'home' %}">Milky Way</a>
-            <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
-            <a href="{% url 'myorders' %}" class="fa fa-file-text-o">My orders</a>
-            <a href="{% url 'account' %}" >Account</a>
-            <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
-          </div>
+       <div class="navbar">
+      <div class="ctgry">
+        <button class="dropbtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="dropdown-content">
+          {% for category in categories %}
+          <a href="{% url 'products' category.id%}"> {{ category }}</a>
+          {% endfor %}
+        </div>
+      </div>
+      <a href="{% url 'home' %}">Milky Way</a>
+      <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
+      <a href="{% url 'myorders'%}" class="fa fa-file-text-o">My orders</a>
+      <a href="{% url 'account' %}" >Account</a>
+      <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+    </div>
           <hr class="line">
     </div>
     <h1 class="title" >Add to cart</h1>

@@ -1,52 +1,30 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
- 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mliky Store</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'css/productCard.css' %}">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,600&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="{% static 'js/addtocart.js' %}"></script>
-</head>
 
-<body>
-  <div class="container">
-    <div class="navbar">
-      <div class="ctgry">
-        <button class="dropbtn">
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="dropdown-content">
-          <a href="#M&T">Phones and Tablets</a>
-          <a href="#HA">Household appliances</a>
-          <a href="{% url 'products' %}">Gaming</a>
-          <a href="#PC">PCs </a>
-          <a href="#M&S">Headpones and Speakers </a>
-        </div>
-      </div>
-      <a href="{% url 'home' %}">Milky Way</a>
-      <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
-      <a href="{% url 'myorders'%}" class="fa fa-file-text-o">My orders</a>
-      <a href="{% url 'account' %}" >Account</a>
-      <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+{% block title %}Homepage{% endblock %}
+
+{% block head_css %}
+  {{ block.super }}
+  <link rel="stylesheet" href="{% static 'css/productCard.css' %}">
+{% endblock %}
+
+ 
+{% block head_js%}
+  <script src="{% static 'js/addtocart.js' %}"></script>
+{% endblock%}
+
+{% block content %}
+  
+  <hr class="line">
+  <hr class="line">
+  <section class="maindisplay">
+    <div class="col-2">
+      <h1>Welcome to the Mliky Store</h1>
+      <h4>Your home for any tech needs in the entire milky galaxy.<h3>
     </div>
-    <hr class="line">
-    <hr class="line">
-    <section class="maindisplay">
-      <div class="col-2">
-        <h1>Welcome to the Mliky Store</h1>
-        <h4>Your home for any tech needs in the entire milky galaxy.<h3>
-      </div>
-      <div class="col-2">
+    <div class="col-2">
         <img src="{% static 'Images/galaxys24.jpg' %}">
-      </div>
+    </div>
   </div>
   <hr class="line2">
   </section>
@@ -111,7 +89,5 @@
         </div>
         <p><button onclick="navigateWithData('{% static 'Images/ps4.png'%}','playstation4',249.99,1)">Add to Cart</button></p>
       </div>
-    </div>
-</body>
+{% endblock%}
 
-</html>

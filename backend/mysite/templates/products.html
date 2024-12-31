@@ -1,10 +1,11 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{% static 'css/productCard.css'%}">
+  <link rel="stylesheet" href="{% static 'css/productCard.css' %}">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,26 +15,24 @@
 <body>
     <div class="container">
       <div class="navbar">
-        <div class="ctgry">
-          <button class="dropbtn">
-            <i class="fa fa-bars"></i>
-          </button>
-          <div class="dropdown-content">
-            <a href="#M&T">Phones and Tablets</a>
-            <a href="#HA">Household appliances</a>
-            <a href="{% url 'products' %}">Gaming</a>
-            <a href="#PC">PCs </a>
-            <a href="#M&S">Headpones and Speakers </a>
-          </div>
+      <div class="ctgry">
+        <button class="dropbtn">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="dropdown-content">
+          {% for category in categories %}
+          <a href="{% url 'products' category.id%}"> {{ category }}</a>
+          {% endfor %}
         </div>
-        <a href="{% url 'home' %}">Milky Way</a>
-        <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
-        <a href="{% url 'myorders' %}" class="fa fa-file-text-o">My orders</a>
-        <a href="{% url 'account' %}" >Account</a>
-        <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
       </div>
+      <a href="{% url 'home' %}">Milky Way</a>
+      <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
+      <a href="{% url 'myorders'%}" class="fa fa-file-text-o">My orders</a>
+      <a href="{% url 'account' %}" >Account</a>
+      <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+    </div>
 
-    <h2>{{ctgry|capfirst}} Products</h2>
+    <h2 class="pCtgry"> Products in {{ category }}</h2>
     <div class="row">
      {% for product in products %}
           {% include 'productCard.html' with product=product %}

@@ -53,7 +53,7 @@ function checkout() {
         // Perform further actions like redirecting to a payment gateway or finalizing the order
         if (selectedMethod === "Visa") {
             // Redirect to a Visa payment page (example action)
-            window.location.href = "visa-payment.html";
+            window.location.href = "checkout.html";
         } else if (selectedMethod === "Cash") {
             // Show confirmation for cash payment
             alert("Please prepare the cash amount for delivery.");
@@ -186,7 +186,7 @@ function navigateWithData(image,name,price,quantity) {
         quantity: quantity
     };
     const queryString = new URLSearchParams(data).toString();
-    window.location.href = `./addtocart.html?${queryString}`;
+    window.location.href = `cart/?${queryString}`;
 }
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);

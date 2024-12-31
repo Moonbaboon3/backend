@@ -1,16 +1,18 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Product
+from django.shortcuts import get_object_or_404, render
+from .models import Product, Category
 
 # Create your views here.
 
 
 def index_view(request):
-    return render(request, 'home.html')
+    categories = Category.objects.all()
+    return render(request, 'home.html', {'categories':categories})
 
-def products_view(request):
-    products = Product.objects.all()
-    return render(request, 'products.html',{'products': products})
+def products_view(request,category_id):
+    category = get_object_or_404(Category, id=category_id)
+    products = Product.objects.filter(ctgry = category)
+    return render(request, 'products.html',{'category':category ,'products': products})
 
 def cart_view(request):
     return render(request, 'cart.html')
