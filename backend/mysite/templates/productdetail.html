@@ -95,43 +95,40 @@
     <h3>Reviews</h3>
     <div class="review-list">
        
+         {% for review in reviews %}
         <div class="review">
             <div class="reviewer-info">
-              <strong>Ahmed Abdallah</strong> <span class="review-date">- January 12, 2024</span>
+              <strong>{{ review.customer.fName }} {{ review.customer.lName }}</strong> <span class="review-date">- {{review.creation_date|date:"F j, Y"}}</span>
               <div class="rating">
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
-                <i class="fa fa-star"></i>
+                {{ review.rating }}
             </div>
-            <p class="review-comment">Just received my package a little bit ago.
-                 Everything was sealed properly and not opened. Just started setting it up now and runs good.</p>
+            <p class="review-comment"> {{review.comment}} </p>
           </div>
           <div class="review-ratings">
             <button class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
             <button class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
           </div>
-        </div>
-
-
-<!--------------next review------------------>
-       <div class="review">
-        <div class="reviewer-info">
-            <strong>Omer </strong> <span class="review-date">- April 8, 2023</span>
-            <div class="rating">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
+          {% empty %}
+              <p class="no-reviews">No reviews posted</p>
+          {% endfor %}
           </div>
-          <p class="review-comment">Thought it was going to be an impulse purchase I would regret but it's ridiculously better than my old PS4 and you can instantly notice the difference just buy it</p>
+         
         </div>
-        <div class="review-ratings">
-          <button class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
-          <button class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
+         {% if user.is_authenticated %}
+            <div class="reviewForm">
+              <h2 style="fontsize:12px;">Leave a review</h2>
+              <form method="post">
+                  {% csrf_token %}
+                  {{ form.as_p}}
+                  <button type="submit">Submit review</button>
+              </form> 
             </div>
-       </div>
+            {% else %}
+                <p><a href="">Log in </a> to leave a review</p>
+            {% endif %}
+
+
+    
 
 
        
@@ -139,6 +136,3 @@
 </div>
  <script src="{% static 'js/productDetailTab.js' %}"></script>
 {% endblock%}
-
-
-
