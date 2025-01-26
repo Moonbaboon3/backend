@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from urllib import request
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from .models import Product, Category, Product_details, Review, Customer
 from .forms import Review_Form
 # Create your views here.
@@ -60,3 +62,34 @@ def login_view(request):
 
 def visa_view(request):
     return render(request, 'checkout.html')
+
+from django.urls import reverse
+
+from django.urls import reverse
+
+def ajax_search_products(request):
+    query = request.GET.get('q', '').strip()
+    print(f"Received query: {query}")
+
+    try:
+        if query:
+            products = Product.objects.filter(pName__icontains=query).select_related('ctgry')[:10]
+            product_data = [
+                {
+                    "name": product.pName,
+                    "url": reverse(
+                        'product_detail',
+                        args=[product.ctgry.id, product.id]  
+                    ),
+                }
+                for product in products
+            ]
+            print(f"Matching products: {product_data}")
+        else:
+            product_data = []
+
+        return JsonResponse({'products': product_data})
+    except Exception as e:
+        print(f"Error occurred: {e}")
+        return JsonResponse({'error': 'Something went wrong!'}, status=500)
+

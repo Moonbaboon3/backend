@@ -8,6 +8,31 @@
 
   {% block head_css %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+      div#dropdown {
+        position: absolute;
+        margin-top: 40.4px;
+        width: 225px;
+        left: 1278px;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+        z-index: 1;
+        float: inline-end;
+
+      }
+
+#dropdown .dropdown-item:hover {background-color: #dfdcdc;}
+
+#dropdown .dropdown-item {
+  padding: 3px;
+  border-style: solid;
+  border-width: thin;
+  width: -webkit-fill-available;
+  border-color: purple;
+  color: #222020;
+}
+    </style>
   {% endblock %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,11 +63,19 @@
       <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
       <a href="{% url 'myorders'%}" class="fa fa-file-text-o">My orders</a>
       <a href="{% url 'account' %}" >Account</a>
-      <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
+      <div class="search-container">
+        <input type="text" id="search_box" placeholder="Search for a product...">
+        <div class="search-dropdown" id="dropdown">
+            
+        </div>
+    </div>
+    
+  
   </div>
   {% endblock %}
   {% block content %}
   {% endblock %}
   </div>
+  <script src="{% static 'js/search.js' %}"></script>
 </body>
-</html>
+</html>;

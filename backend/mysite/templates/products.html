@@ -16,7 +16,7 @@
 
 {% block content %}
 
-    <h2 class="pCtgry"> Products in {{ category }}</h2>
+    <h2 class="pCtgry"> Category: {{ category }}</h2>
     <div class="row">
      {% for product in products %}
           {% include 'productCard.html' with product=product %}
