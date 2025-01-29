@@ -5,8 +5,8 @@
           <div class="sale-badge">SALE</div>
           {% endif %}   
           <img src="{{product.image.url}}" alt="{{ product.pName}}">
-          <h1>{{product.pName}}</h1>
-          <p class="price">
+          <a class="view-btn" href="{% url 'product_detail' category.id product.id %}"><h1 class="pname">{{product.pName}}</h1></a>
+          <div class="price-review"><p class="price">
           {% if product.is_sale %}
 
           <strike>{{product.price}}$</strike>
@@ -16,8 +16,23 @@
           {{product.price}}$
           {% endif %}   
           </p>
-          <p><a class="view-btn" href="{% url 'product_detail' category.id product.id %}">View details</a></p>
-          <div class="rating">
+          
+          <div class="rating"> 
+            {% if product.average_rating is None %}
+                No reviews yet
+            {% else %}
+            <div class="stars">
+                {% for i in "12345" %}
+                    {% if product.average_rating >= forloop.counter %}
+                        <span style="color: gold;">⭐</span>  
+                    {% else %}
+                        <span style="color: gray;">☆</span> 
+                    {% endif %}
+                {% endfor %}
+            </div>    
+            {% endif %}
+            
           </div>
-          <p><button onclick="navigateWithData('Images/digivice.png','Playstation 5',20,1)">Add to Cart</button></p>
+        </div>
+          <p class="addTocrt"><button onclick="navigateWithData('{{product.image.url}}','{{product.pName}}',{{product.price}},1)">Add to Cart</button></p>
       </div>

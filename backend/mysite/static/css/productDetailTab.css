@@ -94,7 +94,7 @@ img{
 
   .box .basic-info div h5 {
       color: gray;
-      padding: 1px;
+      margin-left: 14px;
   }
 
 
@@ -244,7 +244,19 @@ textarea#id_comment {
   margin-bottom: 8px;
 }
 
-.rating {
-  margin-top: 0px;
+.basic-info .rating {
+  margin-top: -15px;
   margin-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
 }
+
+.review-list .review .rating {
+  display: block;
+}
+
+.rating span {
+    margin-left: 4px;
+}
+

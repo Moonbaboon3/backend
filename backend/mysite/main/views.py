@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .models import Product, Category, Product_details, Review, Customer
 from .forms import Review_Form
+from django.db.models import Avg
 # Create your views here.
 
 
@@ -14,7 +15,9 @@ def index_view(request):
 
 def products_view(request,category_id):
     category = get_object_or_404(Category, id=category_id)
-    products = Product.objects.filter(ctgry = category)
+    products = Product.objects.filter(ctgry = category).annotate(
+         average_rating=Avg('details__reviews__rating')
+    )
     return render(request, 'products.html',{'category':category ,'products': products})
 
 def cart_view(request):
@@ -29,7 +32,12 @@ def myorders_view(request):
 @login_required
 def productDetail_view(request,category_id, product_id):
     category = get_object_or_404(Category, id=category_id)
-    product = get_object_or_404(Product,id=product_id, ctgry=category)
+    product = get_object_or_404(
+        Product.objects.annotate(
+            average_rating=Avg('details__reviews__rating')
+        ),
+        id=product_id
+    )
     product_details = get_object_or_404(Product_details,product=product) 
     reviews = product_details.reviews.all()
     form = Review_Form()
@@ -46,7 +54,6 @@ def productDetail_view(request,category_id, product_id):
         
             
     return render(request, 'productDetail.html',{
-            'category': category,
             'product' : product,
             'product_details' :product_details,
             'reviews' : reviews,

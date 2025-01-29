@@ -49,12 +49,20 @@
     <div class="basic-info">
         <h1>{{ product.pName }}</h1>
         <div class="rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <h5>(99+ reviews)</h5>
+          {% for i in "12345" %}
+          {% if product.average_rating >= forloop.counter %}
+              <span style="color: gold;">⭐</span>  
+          {% else %}
+              <span style="color: gray;">☆</span> 
+          {% endif %}
+      {% endfor %}
+            <h5>
+              {% if reviews.count <= 1%}
+              ({{ reviews.count }} review)
+              {% else %}
+              ({{ reviews.count }} reviews)
+              {% endif %}
+            </h5>
         </div>
         {% if product.is_sale %}
 
@@ -64,7 +72,6 @@
           <span style="color:#f39c12;">{{product.price}}$</span>
           {% endif %} 
         <div class="options">
-            <a href="#">Buy it now</a>
             <a href="#">Add to cart</a>
             
         </div>
@@ -100,7 +107,13 @@
             <div class="reviewer-info">
               <strong>{{ review.customer.fName }} {{ review.customer.lName }}</strong> <span class="review-date">- {{review.creation_date|date:"F j, Y"}}</span>
               <div class="rating">
-                {{ review.rating }}
+                {% for i in "12345" %}
+                    {% if review.rating >= forloop.counter %}
+                        <span style="color: gold;">⭐</span>  
+                    {% else %}
+                        <span style="color: gray;">☆</span> 
+                    {% endif %}
+                {% endfor %}
             </div>
             <p class="review-comment"> {{review.comment}} </p>
           </div>
@@ -108,10 +121,12 @@
             <button class="btn" id="green"><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i></button>
             <button class="btn" id="red"><i class="fa fa-thumbs-down fa-lg" aria-hidden="true"></i></button>
           </div>
+        </div>
           {% empty %}
               <p class="no-reviews">No reviews posted</p>
+            </div>
           {% endfor %}
-          </div>
+          
          
         </div>
          {% if user.is_authenticated %}

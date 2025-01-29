@@ -22,6 +22,7 @@ body {
     padding: 20px;
     text-align: center;
     transition: transform 0.3s ease-in-out;
+    position:relative;
 }
 
 .card:hover {
@@ -86,4 +87,10 @@ button:hover {
     margin-left: 20px;
     color: purple;
     margin-top: 20px;
+}
+
+p.addTocrt {
+    position: absolute;
+    bottom:5px;
+    left: 85px;
 }

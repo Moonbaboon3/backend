@@ -33,6 +33,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='uploads/product/')
     is_sale = models.BooleanField(default=False)
     sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    avg_rating = models.FloatField(default=0, null=True, blank=True)
 
     def __str__(self):
         return self.pName
