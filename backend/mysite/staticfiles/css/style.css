@@ -138,11 +138,3 @@ body {
   border-color:rgb(1, 115, 150) ;
 }
 
-.dropdown-item:hover {background-color: #dfdcdc;}
-
-.dropdown-item {
-    padding: 3px;
-    border-style: solid;
-    border-width: thin;
-    border-color: purple;
-}

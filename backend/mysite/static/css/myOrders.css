@@ -2,7 +2,6 @@
     box-sizing: border-box;
     line-height: 1;
     padding: 0;
-    margin: 0;
 }
 
 body {
@@ -11,11 +10,19 @@ body {
 
 .Orders-tab {
     
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: auto;
+display: flex;
+    
+justify-content: center;
+    
+align-items: center;
+    
+height: auto;
+    
+width: auto;
+    
+flex-direction: row;
+    
+flex-wrap: wrap;
 }
 
 .Orders-tab h2 {
@@ -23,19 +30,26 @@ body {
 }
 .Orders-tab .current-orders-list {
     background-color: rgb(255, 255, 255);
-    width: 65%;
-    align-items: center;
+    width: autp;
+    align-items: flex-start;
     margin-left: 100px;
     margin-right: 100px;
-    height: auto;
+    height: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 
 .Orders-tab .page-headline {
     
-    height: 100px;
-    display: flex;
-    color: #5f5d5d;
+height: auto;
+    
+display: flex;
+    
+color: purple;
+    
+flex-direction: row;
 }
 
 
@@ -48,32 +62,30 @@ margin-top:25px;
 margin-left: 60px;
 }
 
-.Orders-tab .current-orders-list .current-order {
-    width: 700px;
+ .current-order {
+    width: 890px;
     margin-bottom: 20px;
-    margin-top: auto;
+    margin-top: 30px;
     margin-left: 20px;
-
+    margin-right: 20px;
 }
 
 .current-order-header {
-    width:900px;
+    width: -webkit-fill-available;
     height: auto;
     display: flex;
-    box-shadow:0px 2px 0px 0px #a4a3a3;
+    align-items: center;
 }
 
 .current-order-header .order-id {
     width: fit-content;
     height: 23px;
     border-style: solid;
-    border-radius:30px ;
+    border-radius:30px;
     border-color: #d1c;
     background-color:rgb(214, 85, 214);
-    color: white ;
-
-    
-
+    color: white;
+    margin-bottom: 2px;
 }
 
 .current-order-header .order-date {
@@ -96,33 +108,32 @@ margin-left: 60px;
 
 .current-order .order-product {
     display: flex;
-    height: 165px;
+    height: auto;
     margin-top: 10px;
-    width: 900px;
-    box-shadow:0px 2px 0px 0px #c0bebe;
+    width: auto;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 3px;
 }
 
 .current-order .order-img img{
     height: 150px;
 }
 
-.order-product .order-info {
-margin-top: 10px;
-margin-left: auto;
-}
+.order-product .order-info {margin-top: 10px;margin-left: 25px;display: flex;flex-direction: column;}
 
 .order-product .order-info .Pname {
-    text-overflow: ellipsis;
-    width: 120px;
-    
+    width: 200px;
+    display: flex;
 }
 
-.order-product .order-info .quantity-price {
+.quantity-price {
     display: flex;
     width : auto;
-    margin-top: 80px;
-   
-
+    margin-top: auto;
+    flex-direction: row;
+    margin-bottom: 5px;
+    margin-right: 5px;
 }
 
 
@@ -131,48 +142,93 @@ margin-left: auto;
     color:#a4a3a3;
 }
 
-.order-product .order-info .quantity-price h3 {
-    margin-left: 60px;
+#price1 {
+    margin-left: 4px;
     color: #3498db;
 }
 
 .current-order .order-status {
     margin-top: 50px;
-    margin-left: 110px;
+    margin-left: auto;
     color: #a4a3a3;
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .current-order .order-status h3 {
     margin-top: 9px;
-    color:orange
+    color:orange;
+    width: max-content;
 }
 
 .current-order .delivery {
-    margin-top: 50px;
-    margin-left: 140px;
+    margin-top: 60px;
+    margin-left: auto;
     color: #a4a3a3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 35px;
+    padding-bottom: 9px;
 }
 
 .current-order .delivery h3 {
     color: black;
+    margin-top: 9px;
 }
 
 .current-order .order-bottom {
-    width:900px;
-    height: auto;
+    width: auto;
     display: flex;
     margin-top: 10px;
+    flex-direction: row;
 }
 
 .current-order .order-bottom .Total-cost {
     margin-left: auto;
     color: #a4a3a3;
+    display: flex;
 }
 
-.current-order .order-bottom .cancel-order {
+.cancel-order {
     background-color: red;
+    color: white;
+    border-style: none;
+    border-radius: 5px;
+    width: 130px;
+    height: 31px;
+    margin-bottom: 0px;
 }
 
-.current-order .order-bottom .cancel-order:hover {
-    background-color: rgb(192, 25, 25);
+.cancel-order:hover {background-color: #d73030;}
+
+.order-item {
+    display: flex;
+    border-style: outset;
+    margin-bottom: 7px;
 }
+
+.order-row {
+    display: flex;
+    flex-direction: row;
+    border-style: solid;
+    border-top: 3px solid grey; /* Top border */
+    border-bottom: 3px solid grey; /* Bottom border */
+    border-left: none; /* Remove left border */
+    border-right: none;
+    width: auto;
+}
+
+.current-order .order-bottom .Total-cost h5 {
+    font-size: 1.4em;
+    color: black;
+    margin-left: 10px;
+}
+
+.quantity-price > h3 {
+    color: #a4a4a4;
+    margin-left: 60px;
+}
+

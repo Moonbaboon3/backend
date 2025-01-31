@@ -3,7 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from .models import Product, Category, Product_details, Review, Customer
+from .models import Product, Category, Product_details, Review, Customer, Order, OrderItem
 from .forms import Review_Form
 from django.db.models import Avg
 # Create your views here.
@@ -27,7 +27,13 @@ def account_view(request):
     return render(request, 'account.html')
 
 def myorders_view(request):
-    return render(request, 'myorders.html')
+    customer = request.user.customer
+    cstmr_order = Order.objects.filter(customer= customer).order_by('-creation_date')
+    
+    context = {
+        'orders' : cstmr_order
+    }
+    return render(request, 'myorders.html', context)
 
 @login_required
 def productDetail_view(request,category_id, product_id):

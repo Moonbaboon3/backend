@@ -1,42 +1,13 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y</title>
-    <link rel="stylesheet" href="{% static 'css./style.css' %}">
-    <link rel="stylesheet" href="{% static 'css./productCard.css' %}">
-    <link rel="stylesheet" href="{% static 'css./myOrders.css'%}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,700;1,600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-  <body>
-      <div class="container">
-        <div class="navbar">
-            <div class="ctgry">
-              <button class="dropbtn">
-                <i class="fa fa-bars"></i>
-              </button>
-              <div class="dropdown-content">
-                <a href="#M&T">Phones and Tablets</a>
-                <a href="#HA">Household appliances</a>
-                <a href="{% url 'products' %}">Gaming</a>
-                <a href="#PC">PCs </a>
-                <a href="#M&S">Headpones and Speakers </a>
-              </div>
-            </div>
-            <a href="{% url 'home' %}">Milky Way</a>
-            <a href="{% url 'cart'%}" class="fa fa-shopping-cart">Cart</a>
-            <a href="{% url 'myorders' %}" class="fa fa-file-text-o">My orders</a>
-            <a href="{% url 'account' %}" >Account</a>
-            <input type="text" placeholder="Search for product..." style="align-self: flex-end;">
-          </div>
-        
-        </div>
 
+{% block head_css %}
+  {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css./myOrders.css'%}">
+{% endblock %}
+  
+{% block content %}
+      <div class="container">
         <div class="Orders-tab">
             
             <div class="current-orders-list">
@@ -44,79 +15,70 @@
                     <h2>My Orders</h2>
                     <p>View and edit your orders here</p>
                 </div>
+                {% if orders %}
+                    {% for order in orders %}
                 <div class="current-order">
+                    
                     <div class="current-order-header">
-                        <h4 class="order-id">#0000001</h4>
-                        <h5 class="order-date">Order placed: 12/11/2024</h5>
-                        <button class="order-tracker"><i class="fa fa-map-marker">Track order</i></button>
-
+                        <h4 class="order-id">Order #{{ order.id }}</h4>
+                        <h5 class="order-date">Order placed: {{order.creation_date}}</h5>
                     </div>
+            <div class="order-row">      
             <div class="order-product">
+                {% for item in order.items.all %}
+                <div class="order-item">
                 <div class="order-img">
-                    <img src="Images/ps5PE.jpeg" alt="Ps5 physical edition">
+                    <img src= "{{item.product.image.url}}" alt="{{item.product.pName}}">
                 </div>
                 <div class="order-info">
-                    <h3 class="Pname">PS5 Physical Edition</h3>
+                    <h3 class="Pname">{{item.product.pName }}</h3>
                     <div class="quantity-price">
                     <h4 >Qty: </h4>
-                    <h4 id="q1">1</h4>
-                    <h3 id="price1">499$</h3>
+                    <h4 id="q1">{{item.quantity}}</h4>
+                    <h3>Price:</h3>
+                    <h3 id="price1">{{item.price}}</h3>
                     </div>
                 </div>
-
+            </div>
+        
+            {% endfor %}
+            </div>
                 <div class="order-status">
                     Status
-                    <h3>In - Transit</h3>
+                    <h3>{% if order.status%}
+                        In - Transit
+                        {% else %}
+                        Processed At Giza facilty
+                        {% endif %}
+                    </h3>
                 </div>
 
                 <div class="delivery">
-                    Delivery Expected by:
-                    <h3>20 December 2024</h3>
+                    Delivery expected by
+                    <h3>2/10/2025</h3>
                 </div>
             </div>
-<!-----------------next product in order---------------------->
-            <div class="order-product">
-                <div class="order-img">
-                    <img src="Images/nintendo.jpg" alt="nintendo Switch">
-                </div>
-                <div class="order-info">
-                    <h3 class="Pname">Nintendo Switch</h3>
-                    <div class="quantity-price">
-                    <h4>Qty: </h4>
-                    <h4 id="q2">1</h4>
-                    <h3 id="price2">249$</h3>
-                    </div>
-                </div>
-
-                <div class="order-status">
-                    Status
-                    <h3>In - Transit</h3>
-                </div>
-
-                <div class="delivery">
-                    Delivery Expected by:
-                    <h3>20 December 2024</h3>
+                <div class="order-bottom">
+                    <button class="cancel-order"><i class="fa fa-times">CANCEL ORDER</i></button>
+                    
+                    <div class="Total-cost" id="Tot-Cost">Total Price:<h5> {{order.total_price}}$</h5></div>
                 </div>
             </div>
-                    
-                    
-            <div class="order-bottom">
-                <button class="cancel-order"><i class="fa fa-times">CANCEL ORDER</i></button>
-                
-                <h3 class="Total-cost" id="Tot-Cost"></h5>
-            </div>
+           
                     
                 </div>
-                
+            {% endfor %}
+            {% else %}
+            <p>You have no orders yet.</p>
+        {% endif %}
                
             </div>
-        </div>  
-        
+        </div> 
+{% endblock %}   
 
-<script src="{% static 'js/myOrders.js' %}"></script>
-<script src="{% static 'js/multidropdown.js' %}"></script>
+
+
 
 
      
-  </body>
-</html>
+  
