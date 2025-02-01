@@ -2,6 +2,7 @@ function price() {
     const rows = document.querySelectorAll('tbody tr');
     let subtotal = 0;
 
+    // Calculate subtotal
     rows.forEach(row => {
         const priceElement = row.querySelector('#price');
         const quantityElement = row.querySelector('.quantity');
@@ -22,18 +23,25 @@ function price() {
         }
     });
 
-    // Update subtotal, tax, and total
-    const subtotalElement = document.querySelector('.total-price tr:nth-child(1) td:nth-child(2)');
-    const taxElement = document.querySelector('.total-price tr:nth-child(2) td:nth-child(2)');
-    const totalElement = document.querySelector('.total-price tr:nth-child(3) td:nth-child(2)');
+    // Calculate tax and total
+    const taxRate = 0.15; // 15% tax rate
+    const tax = subtotal * taxRate;
+    const total = subtotal + tax;
+
+    // Update the DOM nodes
+    const subtotalElement = document.getElementById('subtotal');
+    const taxElement = document.getElementById('tax');
+    const totalElement = document.getElementById('total');
 
     if (subtotalElement && taxElement && totalElement) {
         subtotalElement.innerText = `$${subtotal.toFixed(2)}`;
-        const tax = subtotal * 0.15; // Assuming a 15% tax rate
         taxElement.innerText = `$${tax.toFixed(2)}`;
-        totalElement.innerText = `$${(subtotal + tax).toFixed(2)}`;
+        totalElement.innerText = `$${total.toFixed(2)}`;
+    } else {
+        console.error('Error');
     }
 }
+
 function deleteItem(element) {
     const row = element.closest('tr');
     if (row) {
@@ -62,6 +70,7 @@ function checkout() {
         alert("Please select a payment method before proceeding.");
     }
 }
+
 function payWithVisa() {
     
 // Validation for Visa Payment Form
@@ -101,33 +110,27 @@ document.querySelector('.btn').addEventListener('click', function (e) {
 
 }
 //////////////////////////////
-function addRow(imageUrl = 'https://via.placeholder.com/50', productName = 'New Product', price = 0, quantity = 1) {
+function addRow(imageUrl = 'https://via.placeholder.com/50', productName = 'New Product', _price = 0, quantity = 1) {
     const table = document.querySelector('tbody');
 
-    //creates a row and add the elements in their respective cells
+    // Create a new row and add the elements
     const newRow = document.createElement('tr');
 
     // Remove button column
-    //creates cell for remove button
     const removeCell = document.createElement('td');
-    //creates the actual remove button using the class fa fa-trash
     const al = document.createElement('a');
     const ielem = document.createElement('i');
-    //style
-    ielem.className="fa fa-trash-o";
-    ielem.style.fontSize= "24px";
-    ielem.style.color = 'blue'
-    //append the button in the a element
+    ielem.className = "fa fa-trash-o";
+    ielem.style.fontSize = "24px";
+    ielem.style.color = 'blue';
     al.appendChild(ielem);
-    //ensure the functionality of the remove button onclick
     ielem.onclick = function () {
         deleteItem(this);
     };
-    //append the a element into the cell and the cell into the row
     removeCell.appendChild(al);
     newRow.appendChild(removeCell);
 
-    //same as last creates a cell for image then starts a pyramid like appending
+    // Image column
     const imageCell = document.createElement('td');
     const image = document.createElement('img');
     image.src = imageUrl;
@@ -144,7 +147,7 @@ function addRow(imageUrl = 'https://via.placeholder.com/50', productName = 'New 
     // Price column
     const priceCell = document.createElement('td');
     priceCell.id = 'price';
-    priceCell.textContent = `$${price.toFixed(2)}`;
+    priceCell.textContent = `$${_price.toFixed(2)}`;
     newRow.appendChild(priceCell);
 
     // Quantity column
@@ -154,7 +157,6 @@ function addRow(imageUrl = 'https://via.placeholder.com/50', productName = 'New 
     quantityInput.value = quantity;
     quantityInput.min = 1;
     quantityInput.classList.add('quantity');
-    
     quantityCell.appendChild(quantityInput);
     newRow.appendChild(quantityCell);
 
@@ -163,43 +165,88 @@ function addRow(imageUrl = 'https://via.placeholder.com/50', productName = 'New 
     totalCell.classList.add('total');
     totalCell.textContent = `$${(price * quantity).toFixed(2)}`;
     newRow.appendChild(totalCell);
-    // to call the price function inside  oninput function
-    function myprice(){
-        this.price();
-    }
+
     // Append the new row to the table
     table.appendChild(newRow);
-    myprice();
 
-    
-    quantityInput.oninput  = function(){
-        totalCell.textContent=`$${(price * quantityInput.value).toFixed(2)}`;
-        myprice()
-    }
-    // Update subtotal, tax, and total after adding the row
+    // Call the price function to update totals
+    price();
+
+    // Send the product data to the Django backend
+    fetch('/add-to-cart/', {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}', // Include CSRF token for security
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            imageUrl: imageUrl,
+            productName: productName,
+            price: _price,
+            quantity: quantity
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            console.log('Product added to cart on the server.');
+        } else {
+            console.error('Failed to add product to cart on the server.');
+        }
+    });
+
+
+    // Update total when quantity changes
+    quantityInput.oninput = function () {
+        totalCell.textContent = `$${(price * quantityInput.value).toFixed(2)}`;
+        price();
+    };
 }
-function navigateWithData(image,name,price,quantity) {
+
+
+function navigateWithData(image, name, _price, quantity) {
+    
     const data = {
         imageUrl: image,
         productName: name,
-        price: price,
+        price: _price,
         quantity: quantity
-    };
+    }
+    
     const queryString = new URLSearchParams(data).toString();
-    window.location.href = `cart/?${queryString}`;
+    window.location.href = `/cart/?${queryString}`;
 }
+
+
 function getQueryParams() {
     const params = new URLSearchParams(window.location.search);
     const imageUrl = params.get('imageUrl');
     const productName = params.get('productName');
-    const price = parseFloat(params.get('price'));
+    const _price = parseFloat(params.get('price'));
     const quantity = parseInt(params.get('quantity'));
 
-    if (imageUrl && productName && price && quantity) {
-        addRow(imageUrl, productName, price, quantity);
+    if (imageUrl && productName && _price && quantity) {
+        addRow(imageUrl, productName, _price, quantity);
     }
 }
 
+function loadCart() {
+    fetch('/get-cart/')  
+        .then(response => response.json())
+        .then(cart => {
+            const table = document.querySelector('tbody');
+            for (const [productName, item] of Object.entries(cart)) {
+                const existingRow = Array.from(table.rows).find(row => 
+                    row.querySelector('td:nth-child(3)').textContent === productName
+                );
+                if (!existingRow) {
+                    addRow(item.imageUrl, productName, item.price, item.quantity);
+                }
+            }
+        });
+}
+
+window.onload = loadCart;
 
 window.onload = getQueryParams;
 

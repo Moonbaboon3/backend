@@ -59,8 +59,10 @@
                 </div>
             </div>
                 <div class="order-bottom">
-                    <button class="cancel-order"><i class="fa fa-times">CANCEL ORDER</i></button>
-                    
+                    <form id="cancel-form-{{ order.id }}" method="post" action="{% url 'cancel_order' order.id %}" class="mt-3">
+                        {% csrf_token %}
+                    <button type="button" onclick="cancel_prompt({{order.id}})" class="cancel-order"><i class="fa fa-times">CANCEL ORDER</i></button>
+                    </form>
                     <div class="Total-cost" id="Tot-Cost">Total Price:<h5> {{order.total_price}}$</h5></div>
                 </div>
             </div>
@@ -69,10 +71,11 @@
                 </div>
             {% endfor %}
             {% else %}
-            <p>You have no orders yet.</p>
+            <p>You have no current orders .</p>
         {% endif %}
                
             </div>
+            <script src="{% static 'js/myOrders.js'%}"></script>
         </div> 
 {% endblock %}   
 
